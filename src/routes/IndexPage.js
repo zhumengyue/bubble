@@ -1,12 +1,14 @@
 import React from 'react';
 import { connect } from 'dva';
 import styles from './IndexPage.css';
-import { Button } from 'antd-mobile';
 
-function IndexPage() {
+const IndexPage = ({ dispatch, indexpage }) => {
+  function goto(){
+    dispatch({ type: 'indexpage/goto'})
+  }
   return (
     <div className={styles.normal}>
-      <p className={styles.loading}>Loading....</p>
+      <p onClick={goto} className={styles.loading}>Loading....</p>
     </div>
   );
 }
@@ -14,4 +16,7 @@ function IndexPage() {
 IndexPage.propTypes = {
 };
 
-export default connect()(IndexPage);
+function mapStateToProps({ indexpage }) {
+  return {indexpage}
+}
+export default connect(mapStateToProps)(IndexPage);
