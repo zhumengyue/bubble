@@ -10,5 +10,25 @@ html, body {
 :global(#root) {
   height: 100%;
   width: 100%;
-  overflow: hidden;
+}
+:global(.example-appear) {
+  opacity: 0.01;
+}
+:global(.example-appear.example-appear-active) {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+:global(.example-enter) {
+  opacity: 0.01;
+}
+:global(.example-enter.example-enter-active) {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
+:global(.example-leave) {
+  opacity: 1;
+}
+:global(.example-leave.example-leave-active) {
+  opacity: 0.01;
+  transition: opacity .3s ease-in;
 }

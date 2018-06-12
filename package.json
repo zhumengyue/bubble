@@ -12,6 +12,7 @@
     "babel-plugin-import": "^1.7.0",
     "dva": "^2.3.0",
     "react": "^16.2.0",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.2.0"
   },
   "devDependencies": {

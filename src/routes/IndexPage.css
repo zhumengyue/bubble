@@ -4,14 +4,14 @@
   text-align: center;
   height: 100%;
   width: 100%;
-  background-image: url('../assets/bg.jpg') ;
-  background-size: 100% 100% no-repeat;
+  background-image: url('../assets/start.png') ;
+  background-size: 100% 100%;
   position: absolute;
 }
-
-.loading {
-  margin-top: 26rem;
-  font-size: 2.6rem;
-  font-weight: normal;
-  letter-spacing: 0.1rem;
+.whitespace {
+  position: absolute;
+  width: 6rem;
+  height: 3.5rem;
+  margin-left: 43%;
+  bottom: 1.5rem;
 }

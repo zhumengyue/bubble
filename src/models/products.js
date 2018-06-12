@@ -8,7 +8,13 @@
 import { routerRedux } from 'dva/router'
 export default {
   namespace: 'products',
-  state: [],
+  state: {
+    products: [
+      { name: 'dva', id: 1 },
+      { name: 'antd', id: 2 },
+      { name: 'antd-mobile', id: 3 },
+    ]
+  },
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
@@ -24,8 +30,10 @@ export default {
   },
   reducers: {
     del(state, {payload: id}) {
-      console.log(id)
-      return state.filter(item=>item.id!==id)
+      return { ...state, products: [...state.products.filter(item=>item.id!==id)]}
+    },
+    add(state) {
+      return {...state, products: [...state.products, {name: 'zmy'+(state.products.length+1), id:state.products.length+1}]}
     }
   }
 }

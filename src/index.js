@@ -9,11 +9,7 @@ const app = dva({
   },
   history: hashHistory(),
   initialState: {
-    products: [
-      { name: 'dva', id: 1 },
-      { name: 'antd', id: 2 },
-      { name: 'antd-mobile', id: 3 },
-    ]
+
   }
 
 });
@@ -24,6 +20,7 @@ const app = dva({
 // 3. Model
 app.model(require('./models/indexpage').default);
 app.model(require('./models/products').default);
+app.model(require('./models/main').default);
 
 // 4. Router
 app.router(require('./router').default);

@@ -1,0 +1,11 @@
+.wrapper {
+  text-align: center;
+  align-items: center;
+  align-self: center;
+  height: 9rem;
+  line-height: 9rem;
+  width: 9rem;
+  border: .1rem solid red;
+  border-radius: 4.5rem;
+  margin: 2rem .5rem;
+}

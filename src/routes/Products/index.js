@@ -5,6 +5,6 @@
  * Time : 16:50
  * Desc :
  */
-import {View}from './Products'
+import {View} from './Products'
 
 export default View ;

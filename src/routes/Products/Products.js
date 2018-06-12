@@ -9,6 +9,7 @@ import React from 'react';
 import { connect }from 'dva'
 import ProductList from '../../components/ProductList';
 
+
 const Products = ({dispatch, products}) => {
   function handleDelete(id) {
     dispatch({
@@ -17,19 +18,25 @@ const Products = ({dispatch, products}) => {
     })
   }
 
+  function handleAdd() {
+    dispatch({
+      type: 'products/add',
+    })
+  }
+
   function back() {
     dispatch({ type: 'products/back' })
   }
   return(
-    <div>
-      <h2 onClick={back}>List of Products</h2>
-      <ProductList onDelete={handleDelete} products={products}/>
+    <div style={{height: '100%',width: '100%'}}>
+      <h2 style={{margin: 0}} onClick={back}>List of Products</h2>
+      <ProductList onAdd={handleAdd} onDelete={handleDelete} products={products.products}/>
     </div>
   )
 }
 
 const View = connect(({ products }) => ({
-  products,
+  products
 }))(Products);
 
 export { View }

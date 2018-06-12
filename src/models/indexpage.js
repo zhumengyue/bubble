@@ -1,13 +1,18 @@
 import { routerRedux } from 'dva/router'
+import delay from '../utils/delay';
 
 export default {
   namespace: 'indexpage',
   state: {
   },
 
-  subscription: {
+  subscriptions: {
     setup({ dispatch, history }) {
-
+      history.listen(({pathname}) => {
+        if (pathname === '/'){
+          dispatch({type: 'goto',payload: {click: false}})
+        }
+      })
     }
   },
 
@@ -16,6 +21,7 @@ export default {
       yield put({ type: 'save' });
     },
     *goto({ payload }, { call, put }) {
+      yield call(delay, payload.click ? 200 : 1700)
       yield put(routerRedux.push('/products'))
     },
   },

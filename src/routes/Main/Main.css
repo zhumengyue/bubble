@@ -1,0 +1,11 @@
+.bg {
+  position: absolute;
+  background-image: url("../../assets/bg.png");
+  background-size: 100% 100%;
+  min-height: 100%;
+  width: 100%;
+  min-width: 100%;
+}
+.flex-container {
+  margin: 3rem 2rem 14rem 2rem;
+}
