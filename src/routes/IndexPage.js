@@ -6,6 +6,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class IndexPage extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+
+    }
   }
 
   componentWillMount() {

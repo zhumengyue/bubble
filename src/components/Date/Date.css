@@ -1,0 +1,23 @@
+.wrapper {
+  /*border: 1px solid red;*/
+  height: 5rem;
+  width: 25rem;
+}
+.day {
+  height: 5rem;
+  line-height: 5rem;
+  float: left;
+  font-size: 5rem;
+  color: rgb(27, 116, 229);
+}
+.right {
+  margin-left: 1rem;
+  margin-top: .5rem;
+  height: 4rem;
+  line-height: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(164, 176, 215);
+  float: left;
+}
+

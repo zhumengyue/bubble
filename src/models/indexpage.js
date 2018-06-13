@@ -5,7 +5,6 @@ export default {
   namespace: 'indexpage',
   state: {
   },
-
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({pathname}) => {
@@ -15,17 +14,12 @@ export default {
       })
     }
   },
-
   effects: {
-    *fetch({ payload }, { call, put }) {  // eslint-disable-line
-      yield put({ type: 'save' });
-    },
     *goto({ payload }, { call, put }) {
       yield call(delay, payload.click ? 200 : 1700)
-      yield put(routerRedux.push('/products'))
+      yield put(routerRedux.push('/login'))
     },
   },
-
   reducers: {
     save(state, action) {
       return { ...state, ...action.payload };

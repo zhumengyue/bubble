@@ -5,6 +5,8 @@
  * Time : 13:13
  * Desc :
  */
+import {routerRedux} from 'dva/router'
+import {getBubbles} from "../services/bubble";
 export default {
   namespace: 'main',
   state: {
@@ -27,17 +29,47 @@ export default {
       { id: 16, name: '求撩'},
       { id: 17, name: '美食'},
       { id: 18, name: ''}
-    ]
+    ],
+    bubble: [],
+    tid: 2,
   },
   subscriptions: {
-
+    setup({dispatch,history}) {
+      history.listen(({pathname}) => {
+        if (pathname === '/theme'){
+          dispatch({type: 'query'})
+        }
+      })
+    }
   },
   effects: {
-    *itemclick({payload},{select}) {
-      console.log(payload.id)
+    *itemclick({payload},{select,put}) {
+      yield put({
+        type: 'updateTid',
+        payload: {
+          tid: payload.tid
+        }
+      })
+      yield put(routerRedux.push('./theme'))
+    },
+    *query({payload},{put,call,select}) {
+      let tid = yield select(state => state.main.tid);
+      const {data} = yield call(getBubbles,{tid:tid});
+      console.log(data)
+      // yield put({
+      //   type: 'querySuccess',
+      //   payload: {
+      //     bubble: data.data,
+      //   }
+      // });
     }
   },
   reducers: {
-
+    querySuccess(state,action){
+      return {...state, ...action.payload };
+    },
+    updateTid(state,action) {
+      return {...state, ...action.payload}
+    }
   },
 }

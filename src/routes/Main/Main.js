@@ -1,14 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { connect } from 'dva';
 import styles from './Main.css';
 import { Flex } from 'antd-mobile';
 import Bubble from '../../components/Bubble';
 
-
-
 const Main = ({dispatch, main}) => {
   const handleClick = (id) => {
-    dispatch({type: 'main/itemclick', payload: {id: id}})
+    dispatch({type: 'main/itemclick', payload: {tid: id}})
   }
 
   const Items = main.theme.map(item => {
