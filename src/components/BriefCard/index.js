@@ -3,7 +3,7 @@
  * User : zhumengyue
  * Date : 2018/6/12
  * Time : 16:28
- * Desc : 简略信息卡片组件
+ * Desc : 简略信息卡片组件 BriefCard
  */
 
 import React from 'react';
@@ -11,12 +11,12 @@ import {Card, WingBlank, WhiteSpace} from 'antd-mobile';
 import styles from './BriefCard.css';
 
 const BriefCard = (props) => {
-  const { username, sex, time, like, comment, content, img, liked, onClick,id } = props;
+  let { nickname, sex = 0, subtime, likenum, replynum, content, imgurl, islike, itemClick, itemLikeClick } = props;
 
-  const title = (username,sex) => {
+  const title = (nickname,sex) => {
     return (
       <div className={styles.header}>
-        {username}&nbsp;{
+        {nickname}&nbsp;{
         sex === 0 ?
           <img src={require('../../assets/man.png')} className={styles.seximg} alt=''/> :
           <img src={require('../../assets/woman.png')} className={styles.seximg} alt=''/>}
@@ -25,65 +25,32 @@ const BriefCard = (props) => {
   }
 
   const imgarea = () => {
-    switch (img.length) {
-      case 0: return '';
-      case 1: return <img src={img[0]} alt=''/>
-      case 2: return <div><img src={img[0]} alt=''/> <img src={img[0]} alt=''/></div>
-      case 3:
-      case 4: return <div><img src={img[0]} alt=''/> <img src={img[1]} alt=''/> <img src={img[2]} alt=''/></div>
-      default: return '';
-    }
+    if (imgurl)
+      return <img src={imgurl} alt='' style={{width:80,height:80}}/>
+    return ''
   }
-
 
   const footerextra = liked =>
-    liked === false ? <img src={require('../../assets/like.png')} className={styles.likeimg} alt=''/> : <img src={require('../../assets/liked.png')} className={styles.likeimg} alt=''/>
+     <img src={liked === 0 ? require('../../assets/like.png') : require('../../assets/liked.png')} className={styles.likeimg} onClick={()=>itemLikeClick(props)} alt=''/>
 
-
-  const footercontent = (like,comment,time) => {
-    const lefttext = calculate(time);
+  const footercontent = (likenum,relplynum) => {
+    const lefttext = subtime;
     const liketext = like => like === 0 ? '' : ` · ${like} 喜欢`;
-    const commenttext = comment => comment === 0 ? '' : ` · ${comment} 评论`;
+    const commenttext = relplynum => relplynum === 0 ? '' : ` · ${relplynum} 评论`;
     return(
-      lefttext + liketext(like) + commenttext(comment)
+      lefttext + liketext(likenum) + commenttext(relplynum)
     )
-  }
-
-  const calculate = (date) => {
-    date = date.replace(new RegExp(/-/gm) ,"/"); 　　//将所有的'-'转为'/'即可
-    const now = new Date(),
-          pre = new Date(date);
-
-    let year  = now.getFullYear() - pre.getFullYear(),
-        month = now.getMonth() - pre.getMonth(),
-        day   = now.getDate() - pre.getDate(),
-        hour  = now.getHours() - pre.getHours(),
-        min   = now.getMinutes() - pre.getMinutes();
-
-
-    if(year)
-      return `${year} 年前`;
-    else if(month)
-      return `${month} 个月前`;
-    else if(day)
-      return `${day} 天前`;
-    else if(hour)
-      return `${hour} 小时前`;
-    else if(min)
-      return `${min} 分钟前`;
-    else
-      return '刚刚'
   }
 
   return(
     <WingBlank size="lg">
-      <Card onClick={()=>onClick(props)}>
-        <Card.Body>
-          {title(username,sex)}
+      <Card>
+        <Card.Body onClick={()=>itemClick(props)}>
+          {title(nickname,sex)}
           <p className={styles.content}>{content}</p>
           {imgarea()}
         </Card.Body>
-        <Card.Footer className={styles.footer} content={footercontent(like,comment,time)} extra={footerextra(liked)} />
+        <Card.Footer className={styles.footer} content={footercontent(likenum,replynum)} extra={footerextra(islike)} />
       </Card>
       <WhiteSpace size="sm" />
     </WingBlank>

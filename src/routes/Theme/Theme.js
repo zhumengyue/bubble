@@ -5,23 +5,30 @@
  * Time : 17:55
  * Desc :
  */
+
 import React from 'react';
 import { connect }from 'dva';
 import BriefCard from '../../components/BriefCard';
 
 const Theme = ({dispatch, main}) => {
 
-  const handleClick = (id) => {
-    console.log(id)
+  //TODO 卡片点击
+  const itemClick = (e) => {
+    dispatch({type: 'detail/getArticle',payload: e})
   }
 
+  //TODO 左下角喜欢点击
+  const itemLikeClick = (e) => {
+    console.log(e)
+  }
 
+  // 卡片 Items
   const Items = main.bubble.map(item => {
     return(
       <BriefCard
         {...item}
-        key={item.id}
-        onClick={handleClick}
+        itemClick={itemClick}
+        itemLikeClick={itemLikeClick}
       />
     )
   })
@@ -33,8 +40,6 @@ const Theme = ({dispatch, main}) => {
   )
 }
 
-const View = connect(({ main }) => ({
-  main
-}))(Theme);
+const View = connect(({main}) => ({main}))(Theme);
 
 export default View;

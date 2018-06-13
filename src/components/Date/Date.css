@@ -1,18 +1,17 @@
 .wrapper {
   /*border: 1px solid red;*/
-  height: 5rem;
-  width: 25rem;
+  height: 4rem;
+  width: 100%;
 }
 .day {
-  height: 5rem;
-  line-height: 5rem;
+  height: 4rem;
+  line-height: 4rem;
   float: left;
-  font-size: 5rem;
+  font-size: 4rem;
   color: rgb(27, 116, 229);
 }
 .right {
   margin-left: 1rem;
-  margin-top: .5rem;
   height: 4rem;
   line-height: 2rem;
   font-size: 1.5rem;
@@ -20,4 +19,10 @@
   color: rgb(164, 176, 215);
   float: left;
 }
-
+.like {
+  float: right;
+  margin-right: 2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: rgb(164, 176, 215);
+}

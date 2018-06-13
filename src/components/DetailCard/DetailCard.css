@@ -1,3 +1,48 @@
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+  margin-top: 6rem;
+  border-radius: 5px;
+}
 .header {
-  margin-top: 1rem;
+  margin-top: 12rem;
+}
+.name {
+  font-size: 2rem;
+  color: rgb(41, 163, 233);
+}
+.content {
+  font-size: 2.1rem;
+  background-color: #fff;
+  padding: 1rem 1rem 0 1rem;
+  width: 100%;
+  color: rgb(31,93,158);
+}
+.context {
+  font-size: 2.1rem;
+  background-color: #fff;
+  color: rgb(31,93,158);
+}
+.contentimg {
+  width: 94%;
+  height: auto;
+}
+.footer {
+  position: fixed;
+  left: 1.51rem;
+  right: 1.51rem;
+  bottom: 0;
+  background-color: rgb(244,248,251);
+}
+.btn {
+  font-size: 2rem;
+  width: 50%;
+  float: left;
+  height: 5.8rem;
+  color: rgb(176,197,218);
+  font-weight: bold;
+  background-color: rgb(244,248,251);
+}
+.btn::before {
+  border: none !important;
 }

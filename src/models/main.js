@@ -55,18 +55,19 @@ export default {
     *query({payload},{put,call,select}) {
       let tid = yield select(state => state.main.tid);
       const {data} = yield call(getBubbles,{tid:tid});
-      console.log(data)
-      // yield put({
-      //   type: 'querySuccess',
-      //   payload: {
-      //     bubble: data.data,
-      //   }
-      // });
+      yield put({
+        type: 'querySuccess',
+        payload: {
+          bubble: data.data,
+        }
+      });
     }
   },
   reducers: {
     querySuccess(state,action){
-      return {...state, ...action.payload };
+      const arr = Object.values(action.payload.bubble); // 对象值变数组
+      const bubble = arr.slice(0,arr.length-1); // 切掉最后一个page字段的值
+      return {...state, bubble };
     },
     updateTid(state,action) {
       return {...state, ...action.payload}

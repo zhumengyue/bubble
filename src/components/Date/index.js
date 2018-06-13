@@ -10,10 +10,10 @@ import styles from './Date.css';
 
 const DateRec = (props) => {
 
-  const { date, lowtem, hightem, weather, like } = props;
+  const { createtime, weather, likenum } = props;
   const weekday = ['天','一','二','三','四','五','六'];
 
-  let datet = new Date(date.replace(new RegExp(/-/gm) ,"/")); 　　//将所有的'-'转为'/'即可
+  let datet = new Date(createtime.replace(new RegExp(/-/gm) ,"/")); 　　//将所有的'-'转为'/'即可
   let day = datet.getDate(),
       month = datet.getMonth(),
       year = datet.getFullYear(),
@@ -26,8 +26,9 @@ const DateRec = (props) => {
       </div>
       <div className={styles.right}>
         <div>{year}年{month}月 , 星期{week}</div>
-        <div>{weather} , {lowtem}~{hightem}℃</div>
+        <div>{weather}</div>
       </div>
+      <div className={styles.like}>{likenum} 喜欢</div>
     </div>
   )
 }
