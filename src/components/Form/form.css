@@ -33,9 +33,8 @@
   /*设置发表页面的样式*/
 .content {
   box-sizing: border-box;
+  padding: 6rem 1.5rem 0 1.5rem;
   width: 100%;
-  padding: 0 15px;
-  padding-top: 60px;
   height: 100vh;
   position: relative;
 }
@@ -63,10 +62,10 @@
 }
 
 .topbar .btn_sub {
-  width: 40px;
-  height: 40px;
+  width: 5rem;
+  height: 4rem;
   position: absolute;
-  right: 0;
+  right: 1rem;
   margin: 10px;
   text-align: center;
   line-height: 40px;
@@ -75,16 +74,17 @@
   background-color: transparent;
 }
 
-.content .main {
-  width: 100%;
+.main {
+  /*width: 100%;*/
+  font-size: 1.7rem;
   background-color: white;
   height: 100%;
   border-radius: 10px 10px 0 0;
-  padding: 0 20px;
+  padding: 1rem;
   position: relative;
 }
 
-.main .main_top {
+.main_top {
   width: 100%;
   height: 60px;
   line-height: 60px;

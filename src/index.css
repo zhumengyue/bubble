@@ -31,3 +31,27 @@ html, body {
   opacity: 0.01;
   transition: opacity .3s ease-in;
 }
+:global(.am-tabs-default-bar) {
+  background-color: transparent !important;
+}
+:global(.am-tabs-default-bar-tab-active) {
+  color: white !important;
+}
+:global(.am-tabs-default-bar-underline){
+  border: 1px #fff solid !important;
+}
+:global(.am-list-body) {
+  background-color: transparent !important;
+}
+:global(.am-list-item) {
+  background-color: transparent !important;
+}
+:global(.am-list-body::after) {
+  background-color: transparent !important;
+}
+:global(.am-list-body::before) {
+  background-color: transparent !important;
+}
+:global(.am-list-line::after) {
+  background-color: transparent !important;
+}

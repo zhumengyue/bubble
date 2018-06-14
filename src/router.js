@@ -9,6 +9,7 @@ import Theme from './routes/Theme/Theme';
 import Detail from './routes/Detail/Detail';
 import Random from './routes/Random/Random';
 import SelfCenter from './routes/SelfCenter/SelfCenter';
+import Bubble from './routes/Bubble/Bubble';
 
 function RouterConfig({ history }) {
   return (
@@ -23,6 +24,7 @@ function RouterConfig({ history }) {
         <Route path="/detail" exact component={Detail} />
         <Route path="/random" exact component={Random} />
         <Route path="/selfcenter" exact component={SelfCenter} />
+        <Route path="/create" exact component={Bubble} />
       </Switch>
     </Router>
   );

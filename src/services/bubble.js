@@ -84,3 +84,19 @@ export function getNoRead() {
     url: '/api/index/getNoRead'
   })
 }
+
+export function getUserInfo() {
+  return fetch({
+    method: 'get',
+    url: '/api/user/getUserInfo'
+  })
+}
+
+export function sendBubble(payload) {
+  console.log(payload)
+  return fetch({
+    method: 'post',
+    data: payload,
+    url: '/api/bubble/sendMyBubble'
+  })
+}

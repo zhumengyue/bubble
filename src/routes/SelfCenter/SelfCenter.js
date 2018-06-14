@@ -7,9 +7,18 @@
  */
 import React from 'react';
 import { connect } from 'dva';
-// import { Tabs, List, Collapse } from 'antd';
 import styles from './SelfCenter.css';
-import { Toast } from 'antd-mobile';
+import { Tabs, Badge, WhiteSpace, Toast, List } from 'antd-mobile';
+import CommentItem from "../../components/CommentItem";
+
+const tabs = [
+  { title: '消息'},
+  { title: '我的' },
+  { title: '喜欢' },
+  { title: '设置' },
+];
+
+const Item = List.Item
 
 const data = [
   {
@@ -39,13 +48,46 @@ const data = [
   }
 ];
 
-
 function SelfCenter() {
   return (
     <div className={styles.bg}>
       <div className={styles.jump}>
-        <a href="" className={styles.jump_img}><img src={require('../../assets/down.png')} alt=""/></a>
+        <a href="../#/main" className={styles.jump_img}><img src={require('../../assets/down.png')} alt=""/></a>
       </div>
+      <Tabs tabs={tabs}
+            initialPage={3}
+            onChange={(tab, index) => { console.log('onChange', index, tab); }}
+            onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
+            className={styles.tab}
+      >
+        <div className={styles.sub} >
+          <p>Content of first tab</p>
+          <WhiteSpace size='xl'/>
+        </div>
+        <div className={styles.sub}>
+          Content of second tab
+          <WhiteSpace size='xl'/>
+        </div>
+        <div className={styles.sub}>
+          Content of third tab
+          <WhiteSpace size='xl'/>
+        </div >
+        <div className={styles.sub}>
+          <WhiteSpace size='xl'/>
+          <List>
+            <Item>设置评论昵称</Item>
+            <WhiteSpace size='xl'/>
+            <Item>修改密码</Item>
+            <WhiteSpace size='xl'/>
+            <Item>检查更新</Item>
+            <WhiteSpace size='xl'/>
+            <Item>退出登录</Item>
+          </List>
+          <WhiteSpace size='xl'/>
+        </div >
+      </Tabs>
+      <WhiteSpace />
+
     </div>
   );
 }

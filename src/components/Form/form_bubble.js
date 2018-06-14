@@ -1,11 +1,12 @@
 import { ImagePicker, WingBlank } from 'antd-mobile';
 import { Toast } from 'antd-mobile';
+import {connect} from 'dva'
 import React from 'react';
 import styles from './form.css';
 
 (function(){
   let ajax = new XMLHttpRequest();
-  ajax.open('get','http://bubble.applinzi.com/public/index.php/api/user/getUserInfo');
+  ajax.open('get','/api/user/getUserInfo');
   ajax.send();
   ajax.onreadystatechange = function() {
     if(ajax.readyState === 4 && ajax.status === 200) {
@@ -13,15 +14,13 @@ import styles from './form.css';
       if(result.errcode === "OK") {
         let data = result.data;
         // sessionStorage.user_name = data.username;
-        console.log(result);
       }
     }
   }
 })();
 
-
 const data = [];
-  
+
   class CreateBubble extends React.Component {
     constructor(props) {
       super(props);
@@ -31,7 +30,7 @@ const data = [];
       }
       this.onContentChange = this.onContentChange.bind(this);
     }
-  
+
     onChange = (files, type, index) => {
       console.log(files, type, index);
       this.setState({
@@ -45,41 +44,40 @@ const data = [];
       })
     }
 
-    submit = () => {
-      let ajax = new XMLHttpRequest();
-      let imgSel = this.state.files[0];
-      let imgUrl;
-      if(imgSel) {
-        imgUrl = imgSel.url;
-      }else{
-        imgUrl = '';
-      }
-      ajax.open('post', 'http://bubble.applinzi.com/public/index.php/api/bubble/sendMyBubble');
-      ajax.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-      ajax.send('tid=1&nickename=15999671690&date='+sessionStorage.cur_date+'&weather='+sessionStorage.cur_weather+'&content='+this.state.value+'&imgurl='+imgUrl);
-      ajax.onreadystatechange = function() {
-          if(ajax.readyState === 4 && ajax.status === 200) {
-              let result = ajax.response;
-              if(result.errcode === "OK"){
-              }else{
-              };
-          }
-      }
-    }
-
     backMain() {
       //返回前一个页面
+      window.history.go(-1)
     }
-  
-  
+
     render() {
+      const {dispatch,main} = this.props;
       const { files } = this.state;
+
+      const submit = () => {
+        let imgSel = this.state.files[0];
+        let imgUrl;
+        if(imgSel) {
+          imgUrl = imgSel.url;
+        }else{
+          imgUrl = '';
+        }
+
+        dispatch({
+          type: 'main/write',
+          payload: {
+            content: this.state.value,
+            date: sessionStorage.cur_date_b,
+            weather: sessionStorage.cur_weather,
+            imgurl: imgUrl
+          }
+        })
+      }
+
       return (
         <div className={styles.content}>
-          <form onSubmit={this.submit}>
             <div className={styles.topbar}>
                   <div className={styles.btn_back} onClick={this.backMain}></div>
-                  <button type="submit" className={styles.btn_sub}>完成</button>
+                  <button onClick={submit}  className={styles.btn_sub}>完成</button>
               </div>
               <div className={styles.main}>
                   <div className={styles.main_top}>
@@ -92,18 +90,15 @@ const data = [];
                       <ImagePicker
                         files={files}
                         onChange={this.onChange}
-                        // onImageClick={(index, fs) => console.log(index, fs)}
                         selectable={files.length < 1}
                       />
                     </WingBlank>
                   </div>
               </div>
-          </form>
-          
       </div>
-        
+
       );
     }
   }
 
-  export default CreateBubble;
+  export default connect(({main})=>({main}))(CreateBubble);

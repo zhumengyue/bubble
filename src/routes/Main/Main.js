@@ -25,6 +25,7 @@ const Main = ({dispatch, main}) => {
 
   const nowClick = () => {
     // todo '此刻' 点击响应
+    dispatch({type: 'main/toWrite'})
   }
 
   const Items = main.theme.map(item => {

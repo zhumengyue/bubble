@@ -6,7 +6,7 @@
  * Desc :
  */
 import {routerRedux} from 'dva/router'
-import {getBubbles,changeLike,getTopic,isNoRead,resetNoRead,getNoRead} from "../services/bubble";
+import {getBubbles,changeLike,getTopic,isNoRead,resetNoRead,getNoRead,getUserInfo,sendBubble} from "../services/bubble";
 import delay from "../utils/delay";
 import {login,isLogin} from "../services/login";
 import { Toast } from 'antd-mobile';
@@ -38,6 +38,44 @@ export default {
     }
   },
   effects: {
+    *getUserInfo({payload},{call,put,select}){
+      const {data} = yield call(getUserInfo)
+      yield put({
+        type: 'save',
+        payload: {
+          userdata: data.data
+        }
+      })
+      const userdata = yield select(state=>state.main.userdata)
+      console.log(userdata)
+    },
+    *write({payload},{call,put,select}){
+      let {data} = yield call(getUserInfo)
+      yield put({
+        type: 'save',
+        payload: {
+          userdata: data.data
+        }
+      })
+      console.log(data)
+      const tid = yield select(state=>state.main.tid)
+      const userdata = yield select(state=>state.main.userdata)
+      payload = {...payload,...{tid:tid,nickname: userdata.nickname}}
+      let result = yield call(sendBubble,payload)
+       // result.data.data
+      let response = result.data.data;
+      console.log(response)
+      if(response) {
+        Toast.success('发送成功~',1.1);
+        yield call(delay,1100)
+        yield put(routerRedux.push('./main'))
+      } else {
+        Toast.fail('发送失败~',1.1);
+      }
+    },
+    *toWrite({payload},{call,put,select}){
+      yield put(routerRedux.push('./create'))
+    },
     *toSelf({payload},{call,put,select}){
       const {data} = yield call(isLogin)
       if(!data.data) {
