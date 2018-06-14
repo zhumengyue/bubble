@@ -9,7 +9,7 @@ import React from 'react';
 import { connect } from 'dva';
 import styles from './SelfCenter.css';
 import { Tabs, Badge, WhiteSpace, Toast, List } from 'antd-mobile';
-import CommentItem from "../../components/CommentItem";
+import BriefComment from "../../components/CommentItem/BriefComment";
 
 const tabs = [
   { title: '消息'},
@@ -18,7 +18,7 @@ const tabs = [
   { title: '设置' },
 ];
 
-const Item = List.Item
+const Item = List.Item;
 
 const data = [
   {
@@ -48,20 +48,25 @@ const data = [
   }
 ];
 
-function SelfCenter() {
+const SelfCenter = ({main,dispatch}) => {
+  const Items = main.reply ?
+    main.reply.map(item => {
+      return <BriefComment {...item}/>
+    })
+    : '';
   return (
     <div className={styles.bg}>
       <div className={styles.jump}>
         <a href="../#/main" className={styles.jump_img}><img src={require('../../assets/down.png')} alt=""/></a>
       </div>
       <Tabs tabs={tabs}
-            initialPage={3}
+            initialPage={0}
             onChange={(tab, index) => { console.log('onChange', index, tab); }}
             onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
             className={styles.tab}
       >
         <div className={styles.sub} >
-          <p>Content of first tab</p>
+          {Items}
           <WhiteSpace size='xl'/>
         </div>
         <div className={styles.sub}>
@@ -93,4 +98,4 @@ function SelfCenter() {
 }
 
 
-export default connect()(SelfCenter);
+export default connect(({main})=>({main}))(SelfCenter);

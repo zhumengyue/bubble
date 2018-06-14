@@ -21,3 +21,22 @@
 .wrapper {
   padding: 1.5rem;
 }
+.swrapper {
+  padding: 1.1rem;
+}
+.scontent {
+  padding: .5rem 0;
+  font-size: 1.6rem;
+  margin-left: 2.6rem;
+  display: block;
+}
+.rcontent {
+  display: block;
+  padding: .5rem;
+  margin-left: 2.7rem;
+  font-size: 1.4rem;
+  color: #c4c4c4;
+}
+.middle {
+  padding-top: 1rem;
+}

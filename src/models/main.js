@@ -22,6 +22,7 @@ export default {
     userdata: {},
     isNoRead: false,
     noReadNum: 0,
+    reply: [],
   },
   subscriptions: {
     setup({dispatch,history}) {
@@ -93,6 +94,13 @@ export default {
             }
           });
         }
+        const res = yield call(getNoRead)
+        yield put({
+          type: 'save',
+          payload: {
+            reply: res.data.data
+          }
+        })
         yield put(routerRedux.push('./selfcenter'))
       }
     },

@@ -18,6 +18,7 @@ export default {
   },
   effects: {
     *getArticle({payload},{call,put,select}) {
+      console.log(payload)
       const {data} = yield call (getArticle,{bid: payload.bid})
       yield put({
         type:'updateArticle',

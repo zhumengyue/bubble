@@ -58,7 +58,7 @@ const Main = ({dispatch, main}) => {
       </div>
         <div className={styles.footer}>
           <div className={styles.left} onClick={randomClick}>
-            <img src={require('../../assets/Smile.png')}/>
+            {/*<img src={require('../../assets/Smile.png')}/>*/}
           </div>
           {
             main.isNoRead ?
@@ -67,7 +67,7 @@ const Main = ({dispatch, main}) => {
           }
 
           <div className={styles.right} onClick={nowClick}>
-            <img src={require('../../assets/Note.png')}/>
+            <img src={require('../../assets/note.png')}/>
           </div>
         </div>
     </div>
