@@ -24,7 +24,6 @@ const DetailCard =(props) => {
           <p className={styles.name}>Ta: {nickname}</p>
           <p className={styles.context}>{content}</p>
           <img className={styles.contentimg} src={imgurl} alt='' />
-          {/*<img className={styles.contentimg} src={imgurl} alt='' />*/}
           <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
         </div>

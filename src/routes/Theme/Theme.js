@@ -19,7 +19,10 @@ const Theme = ({dispatch, main}) => {
 
   //TODO 左下角喜欢点击
   const itemLikeClick = (e) => {
-    console.log(e)
+    dispatch({
+      type:'main/likeClick',
+      payload: e,
+    })
   }
 
   // 卡片 Items

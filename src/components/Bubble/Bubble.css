@@ -6,6 +6,7 @@
   line-height: 9rem;
   width: 9rem;
   margin: 2rem .5rem;
+  padding: .5rem;
   background-image: url("../../assets/bubble.png");
   background-size: 100% 100%;
 }

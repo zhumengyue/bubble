@@ -28,7 +28,7 @@ const DateRec = (props) => {
         <div>{year}年{month}月 , 星期{week}</div>
         <div>{weather}</div>
       </div>
-      <div className={styles.like}>{likenum} 喜欢</div>
+      <div className={styles.like}>{likenum === 0 ? '' :`${likenum} 喜欢`}</div>
     </div>
   )
 }

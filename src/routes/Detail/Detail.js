@@ -8,11 +8,9 @@
 import React from 'react';
 import styles from './Detail.css';
 import {connect} from 'dva';
-import Nav from '../../components/Navbar';
 import DetailCard from '../../components/DetailCard';
 
 const Detail = ({dispatch,detail}) => {
-
   let {article} = detail;
   return(
     <div className={styles.wrapper}>

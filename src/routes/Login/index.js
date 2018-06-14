@@ -21,7 +21,7 @@ class Login extends React.Component {
 
     const submit = () => {
       this.props.form.validateFields((error, value) => {
-        dispatch({type:'login/login',payload:value})
+        dispatch({type:'main/login',payload:value})
       });
     }
 
@@ -35,4 +35,4 @@ class Login extends React.Component {
   }
 }
 const LoginForm = createForm()(Login)
-export default connect(({login})=>({login}))(LoginForm);
+export default connect(({main})=>({main}))(LoginForm);

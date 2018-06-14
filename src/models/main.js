@@ -7,6 +7,10 @@
  */
 import {routerRedux} from 'dva/router'
 import {getBubbles} from "../services/bubble";
+import delay from "../utils/delay";
+import {login} from "../services/login";
+import { Toast } from 'antd-mobile';
+
 export default {
   namespace: 'main',
   state: {
@@ -22,10 +26,17 @@ export default {
       { id: 9, name: '烦恼'},
       { id: 10, name: '出柜'},
       { id: 11, name: '孤独'},
-      { id: 12, name: '学习'}
+      { id: 12, name: '学习'},
+      { id: 13, name: 'sex'},
+      { id: 14, name: '自拍'},
+      { id: 15, name: '安利'},
+      { id: 16, name: '集赞'},
+      { id: 17, name: '脆皮鸭'},
+      { id: 18, name: '前任'}
     ],
     bubble: [],
     tid: 2,
+    userdata: {},
   },
   subscriptions: {
     setup({dispatch,history}) {
@@ -37,6 +48,24 @@ export default {
     }
   },
   effects: {
+    *login({payload},{call,put}) {
+      payload.username = payload.username.replace(/\s/g,"")
+      const {data} = yield call(login,payload);
+      if (data.errcode === 'OK') {
+        Toast.success('登陆成功',1.5)
+        yield call(delay,1500)
+        const userdata = data.data;
+        yield put({
+          type: 'save',
+          payload: {
+            userdata:userdata,
+          }
+        })
+        yield put(routerRedux.push('./main'))
+      } else {
+        Toast.fail('用户名或密码错误',2)
+      }
+    },
     *itemclick({payload},{select,put}) {
       yield put({
         type: 'updateTid',
@@ -55,6 +84,10 @@ export default {
           bubble: data.data,
         }
       });
+    },
+    *likeClick({payload},{select,put,call}) {
+      const {uid} = yield select(state => state.main.userdata);
+      console.log(uid,payload)
     }
   },
   reducers: {
@@ -64,6 +97,9 @@ export default {
       return {...state, bubble };
     },
     updateTid(state,action) {
+      return {...state, ...action.payload}
+    },
+    save(state,action) {
       return {...state, ...action.payload}
     }
   },

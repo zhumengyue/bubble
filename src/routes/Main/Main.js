@@ -5,8 +5,22 @@ import { Flex } from 'antd-mobile';
 import Bubble from '../../components/Bubble';
 
 const Main = ({dispatch, main}) => {
+
   const handleClick = (id) => {
+    // todo bubble点击响应
     dispatch({type: 'main/itemclick', payload: {tid: id}})
+  }
+
+  const randomClick = () => {
+    // todo '遇见' 点击响应
+  }
+
+  const selfClick = () => {
+    // todo 个人中心
+  }
+
+  const nowClick = () => {
+    // todo '此刻' 点击响应
   }
 
   const Items = main.theme.map(item => {
@@ -36,8 +50,16 @@ const Main = ({dispatch, main}) => {
         <Flex justify="between" wrap='wrap'>
           {Items.splice(0,3)}
         </Flex>
-
       </div>
+        <div className={styles.footer}>
+          <div className={styles.left}>
+            <img src={require('../../assets/Smile.png')}/>
+          </div>
+          <img  className={styles.middle} src={require('../../assets/btn.png')}/>
+          <div  className={styles.right}>
+            <img src={require('../../assets/Note.png')}/>
+          </div>
+        </div>
     </div>
   )
 }
