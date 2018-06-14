@@ -9,6 +9,9 @@
 import React from 'react';
 import { connect }from 'dva';
 import BriefCard from '../../components/BriefCard';
+import styles from './Theme.css';
+import Navbar from '../../components/Navbar';
+import {WhiteSpace} from 'antd-mobile'
 
 const Theme = ({dispatch, main}) => {
 
@@ -19,6 +22,7 @@ const Theme = ({dispatch, main}) => {
 
   //TODO 左下角喜欢点击
   const itemLikeClick = (e) => {
+    console.log(e)
     dispatch({
       type:'main/likeClick',
       payload: e,
@@ -37,8 +41,11 @@ const Theme = ({dispatch, main}) => {
   })
 
   return(
-    <div style={{height: '100%',width: '100%'}}>
-      {Items}
+    <div className={styles.wrapper}>
+      <Navbar topic='此刻之海'/>
+      <div className={styles.content}>
+        {Items}
+      </div>
     </div>
   )
 }

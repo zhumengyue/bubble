@@ -52,11 +52,11 @@ const Main = ({dispatch, main}) => {
         </Flex>
       </div>
         <div className={styles.footer}>
-          <div className={styles.left}>
+          <div className={styles.left} onClick={randomClick}>
             <img src={require('../../assets/Smile.png')}/>
           </div>
-          <img  className={styles.middle} src={require('../../assets/btn.png')}/>
-          <div  className={styles.right}>
+          <img onClick={selfClick} className={styles.middle} src={require('../../assets/btn.png')}/>
+          <div className={styles.right} onClick={nowClick}>
             <img src={require('../../assets/Note.png')}/>
           </div>
         </div>

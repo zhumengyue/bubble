@@ -1,0 +1,9 @@
+.wrapper {
+  min-height: 100%;
+  width: 100%;
+  background-image: url("../../assets/bg.png");
+  background-size: 100% 100%;
+}
+.content {
+  padding-top: 8rem;
+}

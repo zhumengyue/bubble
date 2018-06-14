@@ -35,7 +35,7 @@ export default {
       { id: 18, name: '前任'}
     ],
     bubble: [],
-    tid: 2,
+    tid: 1,
     userdata: {},
   },
   subscriptions: {
