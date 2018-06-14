@@ -14,3 +14,10 @@ export function login(payload) {
     url: '/api/login/okLogin'
   })
 }
+
+export function isLogin() {
+  return fetch({
+    method: 'get',
+    url: '/api/login/isLogin'
+  })
+}

@@ -8,7 +8,7 @@
 import {routerRedux} from 'dva/router'
 import {getBubbles,changeLike} from "../services/bubble";
 import delay from "../utils/delay";
-import {login} from "../services/login";
+import {login,isLogin} from "../services/login";
 import { Toast } from 'antd-mobile';
 export default {
   namespace: 'main',
@@ -103,12 +103,11 @@ export default {
     },
     *likeClick({payload},{select,put,call}) {
       let {uid} = yield select(state => state.main.userdata);
-      uid = 1;
-      if(!uid)
+      const {data} = yield call(isLogin);
+      if(!data.data)
         Toast.offline('请先登录~',1.5)
       else {
         const {data} = yield call(changeLike,payload)
-        console.log(data)
         data.errmsg === '喜欢成功' ? Toast.success('已喜欢',1.5) : Toast.success('已取消喜欢',1.5)
         yield put({type: 'query'})
       }

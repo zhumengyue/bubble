@@ -51,7 +51,7 @@ const test = [
 
 const DetailCard =(props) => {
   const { likenum, createtime, weather, islike,
-          nickname, content, imgurl, topic,reply } = props;
+          nickname, content, imgurl, topic,reply,changeLike } = props;
 
 
   const comItem = reply.map(item => {
@@ -77,7 +77,7 @@ const DetailCard =(props) => {
       </div>
       <div className={styles.footer}>
         <Button className={styles.btn} icon={<img src={require('../../assets/comment.png')} alt="" />}>评论</Button>
-        <Button className={styles.btn} icon={<img src={islike === 0 ? require('../../assets/like-l.png') : require('../../assets/liked-l.png')} alt="" />}>喜欢</Button>
+        <Button onClick={changeLike} className={styles.btn} icon={<img src={islike === 0 ? require('../../assets/like-l.png') : require('../../assets/liked-l.png')} alt="" />}>喜欢</Button>
       </div>
     </div>
 
