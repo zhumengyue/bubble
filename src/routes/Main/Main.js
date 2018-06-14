@@ -13,6 +13,7 @@ const Main = ({dispatch, main}) => {
 
   const randomClick = () => {
     // todo '遇见' 点击响应
+    dispatch({type: 'main/toRandom'})
   }
 
   const selfClick = () => {

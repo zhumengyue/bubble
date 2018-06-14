@@ -22,6 +22,7 @@ app.model(require('./models/indexpage').default);
 app.model(require('./models/products').default);
 app.model(require('./models/main').default);
 app.model(require('./models/detail').default);
+app.model(require('./models/random').default);
 
 // 4. Router
 app.router(require('./router').default);

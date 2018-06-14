@@ -8,7 +8,6 @@
 import fetch from '../utils/fetch';
 
 export function getBubbles(payload) {
-  console.log(payload)
   return fetch({
     method: 'post',
     data: payload,
@@ -21,5 +20,12 @@ export function getArticle(payload) {
     method: 'post',
     data: payload,
     url: '/api/bubble/getTheBubble'
+  })
+}
+
+export function getRandomBid() {
+  return fetch({
+    method: 'get',
+    url: '/api/bubble/getRandBid'
   })
 }

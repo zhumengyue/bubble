@@ -37,12 +37,16 @@ export default {
     bubble: [],
     tid: 1,
     userdata: {},
+    data:['1','2','3'],
+    slideIndex: ''
   },
   subscriptions: {
     setup({dispatch,history}) {
       history.listen(({pathname}) => {
         if (pathname === '/theme'){
           dispatch({type: 'query'})
+        } else if(pathname === '/random') {
+          dispatch({type: 'queryrandom'})
         }
       })
     }
@@ -66,6 +70,9 @@ export default {
         Toast.fail('用户名或密码错误',2)
       }
     },
+    *toRandom({payload},{select,put}) {
+      yield put(routerRedux.push('./random'))
+    },
     *itemclick({payload},{select,put}) {
       yield put({
         type: 'updateTid',
@@ -74,6 +81,16 @@ export default {
         }
       })
       yield put(routerRedux.push('./theme'))
+    },
+    *query({payload},{put,call,select}) {
+      let tid = yield select(state => state.main.tid);
+      const {data} = yield call(getBubbles,{tid:tid});
+      yield put({
+        type: 'querySuccess',
+        payload: {
+          bubble: data.data,
+        }
+      });
     },
     *query({payload},{put,call,select}) {
       let tid = yield select(state => state.main.tid);

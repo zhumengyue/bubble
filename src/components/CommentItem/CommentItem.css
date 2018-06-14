@@ -1,0 +1,23 @@
+.img {
+  float: left;
+  width: 1.6rem;
+  margin-right: 1rem;
+}
+.title {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+.content {
+  font-size: 1.6rem;
+  margin-left: 2.6rem;
+}
+.time {
+  font-size: 1.6rem;
+  margin-left: 2.6rem;
+}
+.time > a {
+  margin-left: 2rem;
+}
+.wrapper {
+  padding: 1.5rem;
+}

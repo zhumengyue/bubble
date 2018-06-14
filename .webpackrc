@@ -4,7 +4,7 @@
   ],
   "proxy": {
     "/api": {
-      "target": "http://localhost/bubble/public/api",
+      "target": "http://bubble.applinzi.com/public/index.php/api",
       "changeOrigin": true,
       "pathRewrite": { "^/api" : "" }
     }

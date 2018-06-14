@@ -7,6 +7,7 @@ import Test from './routes/Test';
 import Login from './routes/Login';
 import Theme from './routes/Theme/Theme';
 import Detail from './routes/Detail/Detail';
+import Random from './routes/Random/Random';
 
 function RouterConfig({ history }) {
   return (
@@ -19,6 +20,7 @@ function RouterConfig({ history }) {
         <Route path="/test" exact component={Test} />
         <Route path="/login" exact component={Login} />
         <Route path="/detail" exact component={Detail} />
+        <Route path="/random" exact component={Random} />
       </Switch>
     </Router>
   );

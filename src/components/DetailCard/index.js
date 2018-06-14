@@ -10,11 +10,53 @@ import Date from '../Date';
 import styles from './DetailCard.css';
 import Nav from '../../components/Navbar';
 import {WingBlank, Button, WhiteSpace} from 'antd-mobile';
+import CommentItem from '../../components/CommentItem';
+
+// 回复测试
+const test = [
+  {
+    "rid": 4,
+    "bid": 1,
+    "puid": 1,
+    "pnickname": "xzfff",
+    "uid": 1,
+    "nickname": "楼主",
+    "gender": 1,
+    "content": "不咋地",
+    "createtime": "2018-06-14 10:05:25"
+  },
+  {
+    "rid": 5,
+    "bid": 1,
+    "puid": 1,
+    "pnickname": "",
+    "uid": 1,
+    "nickname": "楼主",
+    "gender": 1,
+    "content": "不咋地",
+    "createtime": "2018-06-14 10:04:52"
+  },
+  {
+    "rid": 3,
+    "bid": 1,
+    "puid": 1,
+    "pnickname": "楼主",
+    "uid": 1,
+    "nickname": "楼主",
+    "gender": 0,
+    "content": "不咋地",
+    "createtime": "2018-06-14 09:13:15"
+  }
+]
 
 const DetailCard =(props) => {
   const { likenum, createtime, weather, islike,
-          nickname, content, imgurl, topic } = props;
+          nickname, content, imgurl, topic,reply } = props;
 
+
+  const comItem = reply.map(item => {
+    return <CommentItem {...item}/>
+  } )
   return (
     <div className={styles.wrapper}>
       <Nav topic={topic} isUser={false}/>
@@ -24,6 +66,11 @@ const DetailCard =(props) => {
           <p className={styles.name}>Ta: {nickname}</p>
           <p className={styles.context}>{content}</p>
           <img className={styles.contentimg} src={imgurl} alt='' />
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
+          <div style={{paddingLeft: '1.5rem',fontWeight: 'bold'}}>{reply.length === 0 ? '' : `评论 ${reply.length}`}</div>
+          {comItem}
+          <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
         </div>
