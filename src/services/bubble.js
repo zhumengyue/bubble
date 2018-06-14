@@ -29,3 +29,22 @@ export function getRandomBid() {
     url: '/api/bubble/getRandBid'
   })
 }
+
+export function changeLike(payload) {
+
+  console.log(payload.islike);
+
+  if(payload.islike)
+    return fetch({
+      method: 'post',
+      data: payload,
+      url: '/api/like/delLike'
+    })
+  else
+    return fetch({
+      method: 'post',
+      data: payload,
+      url: '/api/like/addLike'
+    })
+}
+

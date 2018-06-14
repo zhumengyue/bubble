@@ -6,11 +6,10 @@
  * Desc :
  */
 import {routerRedux} from 'dva/router'
-import {getBubbles} from "../services/bubble";
+import {getBubbles,changeLike} from "../services/bubble";
 import delay from "../utils/delay";
 import {login} from "../services/login";
 import { Toast } from 'antd-mobile';
-
 export default {
   namespace: 'main',
   state: {
@@ -103,8 +102,16 @@ export default {
       });
     },
     *likeClick({payload},{select,put,call}) {
-      const {uid} = yield select(state => state.main.userdata);
-      console.log(uid,payload)
+      let {uid} = yield select(state => state.main.userdata);
+      uid = 1;
+      if(!uid)
+        Toast.offline('请先登录~',1.5)
+      else {
+        const {data} = yield call(changeLike,payload)
+        console.log(data)
+        data.errmsg === '喜欢成功' ? Toast.success('已喜欢',1.5) : Toast.success('已取消喜欢',1.5)
+        yield put({type: 'query'})
+      }
     }
   },
   reducers: {
