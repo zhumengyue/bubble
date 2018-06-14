@@ -6,7 +6,7 @@
  * Desc :
  */
 import {routerRedux} from 'dva/router';
-import {changeLike, getArticle} from '../services/bubble';
+import {changeLike, getArticle,sendComment} from '../services/bubble';
 import delay from '../utils/delay';
 import {isLogin} from "../services/login";
 import {Toast} from 'antd-mobile'
@@ -36,6 +36,21 @@ export default {
         data.errmsg === '喜欢成功' ? Toast.success('已喜欢',1.5) : Toast.success('已取消喜欢',1.5)
         yield put({type: 'getArticle',payload})
       }
+    },
+    *comment({payload},{call,put,select}) {
+      const {data} = yield call(isLogin);
+      if(!data.data)
+        Toast.offline('请先登录~',1.5)
+      else {
+        const {data} = yield call(sendComment,payload)
+        console.log('dada',data)
+        data.errcode === 'OK' ? Toast.success('评论成功~',1) : Toast.fail('出错了.',1);
+        yield put({
+          type: 'getArticle',
+          payload
+        })
+      }
+
     }
   },
   reducers: {

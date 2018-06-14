@@ -31,9 +31,6 @@ export function getRandomBid() {
 }
 
 export function changeLike(payload) {
-
-  console.log(payload.islike);
-
   if(payload.islike)
     return fetch({
       method: 'post',
@@ -46,5 +43,14 @@ export function changeLike(payload) {
       data: payload,
       url: '/api/like/addLike'
     })
+}
+
+export function sendComment(payload) {
+  console.log(payload);
+  return fetch({
+    method: 'post',
+    data: payload,
+    url: '/api/reply/sendReply'
+  })
 }
 

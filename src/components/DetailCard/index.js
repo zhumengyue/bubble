@@ -13,7 +13,7 @@ import {WingBlank, Button, WhiteSpace} from 'antd-mobile';
 import CommentItem from '../../components/CommentItem';
 
 // 回复测试
-const test = [
+const reply1 = [
   {
     "rid": 4,
     "bid": 1,
@@ -51,7 +51,8 @@ const test = [
 
 const DetailCard =(props) => {
   const { likenum, createtime, weather, islike,
-          nickname, content, imgurl, topic,reply,changeLike } = props;
+          nickname, content, imgurl, topic,reply,
+          changeLike, commentClick } = props;
 
 
   const comItem = reply.map(item => {
@@ -76,7 +77,7 @@ const DetailCard =(props) => {
         </div>
       </div>
       <div className={styles.footer}>
-        <Button className={styles.btn} icon={<img src={require('../../assets/comment.png')} alt="" />}>评论</Button>
+        <Button onClick={commentClick} className={styles.btn} icon={<img src={require('../../assets/comment.png')} alt="" />}>评论</Button>
         <Button onClick={changeLike} className={styles.btn} icon={<img src={islike === 0 ? require('../../assets/like-l.png') : require('../../assets/liked-l.png')} alt="" />}>喜欢</Button>
       </div>
     </div>
