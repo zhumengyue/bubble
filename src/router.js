@@ -8,6 +8,7 @@ import Login from './routes/Login';
 import Theme from './routes/Theme/Theme';
 import Detail from './routes/Detail/Detail';
 import Random from './routes/Random/Random';
+import SelfCenter from './routes/SelfCenter/SelfCenter';
 
 function RouterConfig({ history }) {
   return (
@@ -21,6 +22,7 @@ function RouterConfig({ history }) {
         <Route path="/login" exact component={Login} />
         <Route path="/detail" exact component={Detail} />
         <Route path="/random" exact component={Random} />
+        <Route path="/selfcenter" exact component={SelfCenter} />
       </Switch>
     </Router>
   );

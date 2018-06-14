@@ -1,0 +1,36 @@
+.bg {
+  width: 100%;
+  height: 100%;
+  background-image: url("../../assets/bg.png");
+  background-size: 100% 100%;
+}
+.input {
+  font-size: 1.6rem;
+  background-color: transparent;
+  height: 5rem;
+  line-height: 5rem;
+  margin-bottom: 2rem;
+  display: block;
+  width: 70%;
+  margin-left: 14%;
+}
+.login_login {
+  margin-left: 14%;
+  text-decoration: white;
+  width: 70%;
+  font-size: 1.6rem;
+  height: 5rem;
+  line-height: 5rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  background-color: transparent;
+}
+.jump {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.jump .jump_img {
+  display: inline-block;
+  height: 100%;
+}

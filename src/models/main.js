@@ -10,6 +10,7 @@ import {getBubbles,changeLike,getTopic,isNoRead,resetNoRead,getNoRead} from "../
 import delay from "../utils/delay";
 import {login,isLogin} from "../services/login";
 import { Toast } from 'antd-mobile';
+
 export default {
   namespace: 'main',
   state: {
@@ -37,16 +38,37 @@ export default {
     }
   },
   effects: {
-    *isNoRead({payload},{call,put}){
+    *toSelf({payload},{call,put,select}){
+      const {data} = yield call(isLogin)
+      if(!data.data) {
+        Toast.offline('请先登录~',1)
+        yield call(delay,1000)
+        yield put(routerRedux.push('./login'))
+      }  else {
+        const {data} = yield call(resetNoRead);
+        if(data.data !== 0) {
+          yield put({
+            type: 'save',
+            payload: {
+              isNoRead: false,
+              noReadNum: 0
+            }
+          });
+        }
+        yield put(routerRedux.push('./selfcenter'))
+      }
+    },
+    *isNoRead({payload},{call,put,select}){
       const {data} = yield call(isNoRead);
-      if(data.errcode === 'OK')
+      if(data.data && data.data.noread !== 0)
         yield put({
           type: 'save',
           payload: {
             isNoRead: true,
             noReadNum: data.data.noread
           }
-        })
+        });
+
     },
     *login({payload},{call,put}) {
       payload.username = payload.username.replace(/\s/g,"")

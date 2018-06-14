@@ -43,7 +43,6 @@ export default {
         Toast.offline('请先登录~',1.5)
       else {
         const {data} = yield call(sendComment,payload)
-        console.log('dada',data)
         data.errcode === 'OK' ? Toast.success('评论成功~',1) : Toast.fail('出错了.',1);
         yield put({
           type: 'getArticle',

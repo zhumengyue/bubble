@@ -20,7 +20,7 @@ const Main = ({dispatch, main}) => {
 
   const selfClick = () => {
     // todo 个人中心
-    dispatch({type: 'main/self'})
+    dispatch({type: 'main/toSelf'})
   }
 
   const nowClick = () => {

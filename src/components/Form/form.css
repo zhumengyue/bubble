@@ -1,0 +1,149 @@
+/*输入框样式*/
+.nameInput>input {
+    outline:none;
+    background-color: transparent;
+    color: aliceblue;
+    border: none;
+    height: 32px;
+    line-height: 32px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    display: block;
+    width: 90%;
+  }
+
+  .nameInput>button {
+    float: right;
+    border-color: white;
+    background-color: transparent;
+  }
+
+  .nameInput button:focus,
+  .nameInput button:hover {
+    border-color: rgba(240, 248, 255, 0.555);
+    background-color: transparent;
+  }
+
+  /*设置placeholder颜色*/
+  input::-webkit-input-placeholder{ /*WebKit browsers*/
+    color: rgba(255, 255, 255, .5);
+  }
+
+
+  /*设置发表页面的样式*/
+.content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 15px;
+  padding-top: 60px;
+  height: 100vh;
+  position: relative;
+}
+
+.content>form {
+  height: 100%;
+}
+
+.topbar {
+  height: 60px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+
+.topbar .btn_back {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  left: 0;
+  margin: 10px;
+  background: url('../../assets/left.png') no-repeat 0 0;
+  background-size: cover;
+}
+
+.topbar .btn_sub {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 0;
+  margin: 10px;
+  text-align: center;
+  line-height: 40px;
+  color: rgb(147, 203, 233);
+  border: none;
+  background-color: transparent;
+}
+
+.content .main {
+  width: 100%;
+  background-color: white;
+  height: 100%;
+  border-radius: 10px 10px 0 0;
+  padding: 0 20px;
+  position: relative;
+}
+
+.main .main_top {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  color: rgb(147, 203, 233);
+}
+
+.main .main_top .main_top_date {
+  float: left;
+}
+
+.main .main_top .main_top_weather {
+  float: right;
+}
+
+/*设置placeholder颜色*/
+textarea::-webkit-input-placeholder{ /*WebKit browsers*/
+  color: rgba(147, 203, 233, .5);
+}
+
+/*设置textarea的样式*/
+.main .main_bubble {
+  resize: none;
+  width: 100%;
+  height: 300px;
+  border: none;
+}
+
+/*设置底栏样式*/
+.main .main_bottom {
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin-left: -15px;
+}
+
+/*登录页面*/
+.nameInput .login_login {
+  margin-left: 15%;
+  color: aliceblue;
+  width: 70%;
+  height: 40px;
+  float: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/*注册*/
+.nameInput .form_gender {
+  display: inline-block;
+  width: 15px;
+  font-size: 16px;
+}
+
+.nameInput .form_phone {
+  display: inline-block;
+  width: 40%;
+}
+
+.nameInput .form_getNum {
+  margin-right: 10px;
+}

@@ -17,7 +17,7 @@ export default {
   effects: {
     *goto({ payload }, { call, put }) {
       yield call(delay, payload.click ? 200 : 1700)
-      yield put(routerRedux.push('/login'))
+      yield put(routerRedux.push('/main'))
     },
   },
   reducers: {

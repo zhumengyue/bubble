@@ -1,0 +1,109 @@
+/*跳转图标样式*/
+.bg {
+  height: 100%;
+  width: 100%;
+  background-image: url("../../assets/bg.png");
+  background-size: 100% 100%;
+}
+.jump {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.jump .jump_img {
+  display: inline-block;
+  height: 100%;
+}
+
+/*tab栏样式*/
+.center {
+  text-align: center;
+  color: rgb(55, 166, 226);
+}
+
+.center :global .ant-tabs-ink-bar.ant-tabs-ink-bar-animated {
+  background-color: aliceblue;
+}
+
+.center :global .ant-tabs-tab-active,
+.center :global .ant-tabs-tab:hover,
+.center :global .ant-tabs-tab:active {
+  color: aliceblue;
+}
+
+.center>div {
+  border: none;
+}
+
+.center .tabs {
+  text-align: left;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: white;
+}
+
+.center .tabs:nth-child(4) {
+  padding-left: 5px;
+}
+
+.centerList {
+  background-color: transparent;
+  border: none;
+}
+
+/*更新和退出样式*/
+.centerList :global .ant-list-item {
+  border: none;
+  font-size: 16px;
+  margin-left: 40px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+.centerList :global .ant-list-item-content {
+  color: aliceblue;
+}
+
+/*设置评论昵称样式*/
+.centerList :global .ant-collapse-item {
+  border: none;
+}
+
+.centerList :global .ant-collapse-header {
+  color: aliceblue !important;
+  font-size: 16px;
+}
+
+.centerList :global .ant-collapse-content {
+  background-color: transparent;
+}
+
+/*输入框样式*/
+.nameInput>input {
+  outline:none;
+  background-color: transparent;
+  color: aliceblue;
+  border: none;
+  height: 32px;
+  line-height: 32px;
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+
+.nameInput>button {
+  float: right;
+  border-color: white;
+  background-color: transparent;
+}
+
+.nameInput>button:focus,
+.nameInput>button:hover {
+  border-color: rgba(240, 248, 255, 0.555);
+  background-color: transparent;
+}
+
+/*设置placeholder颜色*/
+input::-webkit-input-placeholder{ /*WebKit browsers*/
+  color: rgba(255, 255, 255, .5);
+}
+
