@@ -58,7 +58,7 @@ const DetailCard =(props) => {
     replyClick(e)
   }
 
-  const comItem = reply.map(item => {
+  const comItem = reply === undefined ? '' : reply.map(item => {
     return <CommentItem {...item} replyClicked={replyClicked}/>
   } )
   return (
@@ -72,7 +72,7 @@ const DetailCard =(props) => {
           <img className={styles.contentimg} src={imgurl} alt='' />
           <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
-          <div style={{paddingLeft: '1.5rem',fontWeight: 'bold'}}>{reply.length === 0 ? '' : `评论 ${reply.length}`}</div>
+          <div style={{paddingLeft: '1.5rem',fontWeight: 'bold'}}>{reply === undefined ? '' : `评论 ${reply.length}`}</div>
           {comItem}
           <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>

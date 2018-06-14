@@ -3,11 +3,13 @@ import { connect } from 'dva';
 import styles from './Main.css';
 import { Flex } from 'antd-mobile';
 import Bubble from '../../components/Bubble';
+import {Badge} from 'antd-mobile'
 
 const Main = ({dispatch, main}) => {
 
   const handleClick = (id) => {
     // todo bubble点击响应
+    console.log(id)
     dispatch({type: 'main/itemclick', payload: {tid: id}})
   }
 
@@ -18,6 +20,7 @@ const Main = ({dispatch, main}) => {
 
   const selfClick = () => {
     // todo 个人中心
+    dispatch({type: 'main/self'})
   }
 
   const nowClick = () => {
@@ -26,7 +29,7 @@ const Main = ({dispatch, main}) => {
 
   const Items = main.theme.map(item => {
     return(
-      <Bubble name={item.name} id={item.id} key={item.id} onClick={() => handleClick(item.id)} />
+      <Bubble name={item.name} id={item.tid} key={item.tid} onClick={() => handleClick(item.tid)} />
     )
   })
 
@@ -56,7 +59,12 @@ const Main = ({dispatch, main}) => {
           <div className={styles.left} onClick={randomClick}>
             <img src={require('../../assets/Smile.png')}/>
           </div>
-          <img onClick={selfClick} className={styles.middle} src={require('../../assets/btn.png')}/>
+          {
+            main.isNoRead ?
+              <Badge text={main.noReadNum} className={styles.middle}><img onClick={selfClick} src={require('../../assets/btn-p.png')}/></Badge>
+              : <img onClick={selfClick} className={styles.middle} src={require('../../assets/btn.png')}/>
+          }
+
           <div className={styles.right} onClick={nowClick}>
             <img src={require('../../assets/Note.png')}/>
           </div>

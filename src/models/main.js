@@ -6,7 +6,7 @@
  * Desc :
  */
 import {routerRedux} from 'dva/router'
-import {getBubbles,changeLike} from "../services/bubble";
+import {getBubbles,changeLike,getTopic,isNoRead,resetNoRead,getNoRead} from "../services/bubble";
 import delay from "../utils/delay";
 import {login,isLogin} from "../services/login";
 import { Toast } from 'antd-mobile';
@@ -15,34 +15,20 @@ export default {
   state: {
     theme: [
       { id: 1, name: '此刻'},
-      { id: 2, name: '丧'},
-      { id: 3, name: '打卡'},
-      { id: 4, name: '吐槽'},
-      { id: 5, name: '秘密'},
-      { id: 6, name: '心愿'},
-      { id: 7, name: '开心'},
-      { id: 8, name: '恋爱'},
-      { id: 9, name: '烦恼'},
-      { id: 10, name: '出柜'},
-      { id: 11, name: '孤独'},
-      { id: 12, name: '学习'},
-      { id: 13, name: 'sex'},
-      { id: 14, name: '自拍'},
-      { id: 15, name: '安利'},
-      { id: 16, name: '集赞'},
-      { id: 17, name: '脆皮鸭'},
-      { id: 18, name: '前任'}
     ],
     bubble: [],
     tid: 1,
     userdata: {},
-    data:['1','2','3'],
-    slideIndex: ''
+    isNoRead: false,
+    noReadNum: 0,
   },
   subscriptions: {
     setup({dispatch,history}) {
       history.listen(({pathname}) => {
-        if (pathname === '/theme'){
+        if (pathname === '/main') {
+          dispatch({type: 'querytopic'})
+          dispatch({type: 'isNoRead'})
+        } else if (pathname === '/theme'){
           dispatch({type: 'query'})
         } else if(pathname === '/random') {
           dispatch({type: 'queryrandom'})
@@ -51,6 +37,17 @@ export default {
     }
   },
   effects: {
+    *isNoRead({payload},{call,put}){
+      const {data} = yield call(isNoRead);
+      if(data.errcode === 'OK')
+        yield put({
+          type: 'save',
+          payload: {
+            isNoRead: true,
+            noReadNum: data.data.noread
+          }
+        })
+    },
     *login({payload},{call,put}) {
       payload.username = payload.username.replace(/\s/g,"")
       const {data} = yield call(login,payload);
@@ -111,6 +108,10 @@ export default {
         data.errmsg === '喜欢成功' ? Toast.success('已喜欢',1.5) : Toast.success('已取消喜欢',1.5)
         yield put({type: 'query'})
       }
+    },
+    *querytopic({payload},{select,put,call}) {
+      const {data} = yield call(getTopic);
+      yield put({type: 'save',payload: {theme: data.data}})
     }
   },
   reducers: {

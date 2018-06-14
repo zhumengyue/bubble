@@ -11,7 +11,7 @@ import {Card, WingBlank, WhiteSpace} from 'antd-mobile';
 import styles from './BriefCard.css';
 
 const BriefCard = (props) => {
-  let { nickname, sex = 0, subtime, likenum, replynum, content, imgurl, islike, itemClick, itemLikeClick } = props;
+  let { nickname, gender, subtime, likenum, replynum, content, imgurl, islike, itemClick, itemLikeClick } = props;
 
   const title = (nickname,sex) => {
     return (
@@ -46,7 +46,7 @@ const BriefCard = (props) => {
     <WingBlank size="lg">
       <Card>
         <Card.Body onClick={()=>itemClick(props)}>
-          {title(nickname,sex)}
+          {title(nickname,gender)}
           <p className={styles.content}>{content}</p>
           {imgarea()}
         </Card.Body>

@@ -34,7 +34,7 @@
 .middle {
   position: absolute;
   left: 50%;
-  transform: translate(-50%);
+  transform: translate(-45%,-5%);
   width: 7rem;
   bottom: 2rem;
 }

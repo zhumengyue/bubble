@@ -54,3 +54,33 @@ export function sendComment(payload) {
   })
 }
 
+export function getTopic() {
+  return fetch({
+    method: 'get',
+    url: '/api/topic/getAllTopic'
+  })
+}
+
+// 判断是否有未读
+export function isNoRead() {
+  return fetch({
+    method: 'get',
+    url: '/api/index/isNoRead'
+  })
+}
+
+// 重置未读
+export function resetNoRead() {
+  return fetch({
+    method: 'get',
+    url: '/api/index/resetNoRead'
+  })
+}
+
+// 获取全部消息
+export function getNoRead() {
+  return fetch({
+    method: 'get',
+    url: '/api/index/getNoRead'
+  })
+}
