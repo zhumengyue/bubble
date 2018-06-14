@@ -52,11 +52,14 @@ const reply1 = [
 const DetailCard =(props) => {
   const { likenum, createtime, weather, islike,
           nickname, content, imgurl, topic,reply,
-          changeLike, commentClick } = props;
+          changeLike, commentClick, replyClick } = props;
 
+  const replyClicked = (e) => {
+    replyClick(e)
+  }
 
   const comItem = reply.map(item => {
-    return <CommentItem {...item}/>
+    return <CommentItem {...item} replyClicked={replyClicked}/>
   } )
   return (
     <div className={styles.wrapper}>

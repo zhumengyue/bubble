@@ -20,17 +20,16 @@ class Detail extends React.Component {
     super(props)
 
     this.state = {
-      modal: true,
-      self: ''
+      modal: false,
+      payload: {
+        bid: '',
+        puid: '',
+        pnickname: '',
+        content: ''
+      }
     }
   }
 
-  showModal = (e) => {
-    e.preventDefault(); // 修复 Android 上点击穿透
-    this.setState({
-      modal: true,
-    });
-  }
   onClose = () => {
     this.setState({
       modal: false,
@@ -53,20 +52,33 @@ class Detail extends React.Component {
     }
 
     const commentClick = (e) => {
+      this.setState({payload: {
+        bid: article.bid,
+        pnickname: '楼主',
+        puid: article.uid
+        }})
+      this.setState({modal:true})
+    }
+
+    const replyClick = (e) => {
       console.log(e)
+      this.setState({payload: {
+          bid: e.bid,
+          pnickname: e.nickname,
+          puid: e.uid
+        }})
       this.setState({modal:true})
     }
 
     const submit = () => {
-
       this.props.form.validateFields((error, value) => {
         dispatch({
           type: 'detail/comment',
           payload: {
             content: value.content,
-            bid: article.bid,
-            puid: article.uid,
-            pnickname: '楼主'
+            bid: this.state.payload.bid,
+            puid: this.state.payload.puid,
+            pnickname: this.state.payload.pnickname
           }
         });
         this.setState({modal:false})
@@ -81,6 +93,7 @@ class Detail extends React.Component {
           {...article}
           changeLike={itemLikeClick}
           commentClick={commentClick}
+          replyClick={replyClick}
         />
       </div>
       <Modal

@@ -11,7 +11,7 @@ import {} from 'antd-mobile';
 import styles from './CommentItem.css';
 
 const CommentItem = (props) => {
-  const {createtime,gender,content,nickname,pnickname} = props;
+  const {createtime,gender,content,nickname,pnickname,replyClicked} = props;
 
   const calculate = (time) => {
     time = time.replace(new RegExp(/-/gm),"/");
@@ -38,7 +38,7 @@ const CommentItem = (props) => {
           {nickname} 回复 {pnickname}
         </div>
         <p className={styles.content}>{content}</p>
-        <div className={styles.time}>{calculate(createtime)} <a>回复</a></div>
+        <div className={styles.time}>{calculate(createtime)} <a onClick={()=>replyClicked(props)}>回复</a></div>
       </div>
   )
 }
