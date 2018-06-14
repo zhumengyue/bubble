@@ -16,7 +16,7 @@ const Detail = ({dispatch,detail}) => {
   let {article} = detail;
   return(
     <div className={styles.wrapper}>
-      <Nav topic={article.topic} isUser={false}/>
+      <div className={styles.bg}></div>
       <DetailCard
         {...article}
       />

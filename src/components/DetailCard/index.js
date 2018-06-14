@@ -8,6 +8,7 @@
 import React from 'react';
 import Date from '../Date';
 import styles from './DetailCard.css';
+import Nav from '../../components/Navbar';
 import {WingBlank, Button, WhiteSpace} from 'antd-mobile';
 
 const DetailCard =(props) => {
@@ -15,20 +16,25 @@ const DetailCard =(props) => {
           nickname, content, imgurl, topic } = props;
 
   return (
-    <WingBlank size='lg' className={styles.wrapper}>
+    <div className={styles.wrapper}>
+      <Nav topic={topic} isUser={false}/>
       <div className={styles.content}>
-        <Date className={styles.header} createtime={createtime} weather={weather} likenum={likenum}/>
-        <p className={styles.name}>Ta: {nickname}</p>
-        <p className={styles.context}>{content}</p>
-        <img className={styles.contentimg} src={imgurl} alt='' />
-        <WhiteSpace size='xl'/>
-        <WhiteSpace size='xl'/>
-        <div className={styles.footer}>
-          <Button className={styles.btn} icon={<img src={require('../../assets/comment.png')} alt="" />}>评论</Button>
-          <Button className={styles.btn} icon={<img src={islike === 0 ? require('../../assets/like-l.png') : require('../../assets/liked-l.png')} alt="" />}>喜欢</Button>
+        <Date createtime={createtime} weather={weather} likenum={likenum}/>
+        <div className={styles.middle}>
+          <p className={styles.name}>Ta: {nickname}</p>
+          <p className={styles.context}>{content}</p>
+          <img className={styles.contentimg} src={imgurl} alt='' />
+          {/*<img className={styles.contentimg} src={imgurl} alt='' />*/}
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
         </div>
       </div>
-    </WingBlank>
+      <div className={styles.footer}>
+        <Button className={styles.btn} icon={<img src={require('../../assets/comment.png')} alt="" />}>评论</Button>
+        <Button className={styles.btn} icon={<img src={islike === 0 ? require('../../assets/like-l.png') : require('../../assets/liked-l.png')} alt="" />}>喜欢</Button>
+      </div>
+    </div>
+
   );
 }
 
@@ -44,3 +50,5 @@ DetailCard.defaultProps = {
 }
 
 export default DetailCard;
+{/*<WingBlank size='lg' className={styles.wrapper}>*/}
+{/*</WingBlank>*/}
