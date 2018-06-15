@@ -72,7 +72,7 @@ const DetailCard =(props) => {
           <img className={styles.contentimg} src={imgurl} alt='' />
           <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
-          <div style={{paddingLeft: '1.5rem',fontWeight: 'bold'}}>{reply === undefined ? '' : `评论 ${reply.length}`}</div>
+          <div style={{paddingLeft: '1.5rem',fontWeight: 'bold', fontSize: '1.7rem'}}>{reply === undefined ? '' : `评论 ${reply.length}`}</div>
           {comItem}
           <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>

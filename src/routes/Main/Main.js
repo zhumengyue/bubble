@@ -30,7 +30,7 @@ const Main = ({dispatch, main}) => {
 
   const Items = main.theme.map(item => {
     return(
-      <Bubble name={item.name} id={item.tid} key={item.tid} onClick={() => handleClick(item.tid)} />
+      <Bubble className={styles.item} name={item.name} id={item.tid} key={item.tid} onClick={() => handleClick(item.tid)} />
     )
   })
 
@@ -67,7 +67,7 @@ const Main = ({dispatch, main}) => {
           }
 
           <div className={styles.right} onClick={nowClick}>
-            <img src={require('../../assets/note.png')}/>
+            {/*<img src={require('../../assets/note.png')}/>*/}
           </div>
         </div>
     </div>

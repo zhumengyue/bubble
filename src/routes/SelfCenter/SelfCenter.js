@@ -10,6 +10,7 @@ import { connect } from 'dva';
 import styles from './SelfCenter.css';
 import { Tabs, Badge, WhiteSpace, Toast, List } from 'antd-mobile';
 import BriefComment from "../../components/CommentItem/BriefComment";
+import BriefCard from '../../components/BriefCard';
 
 const tabs = [
   { title: '消息'},
@@ -20,40 +21,45 @@ const tabs = [
 
 const Item = List.Item;
 
-const data = [
-  {
-    content: '检查更新',
-    callback() {
-      Toast.success(`已是最新版本！`, 2);
-    }
-  },
-  {
-    content: '退出登录',
-    callback() {
-      let ajax = new XMLHttpRequest();
-      ajax.open('get','http://bubble.applinzi.com/public/index.php/api/login/delLogin');
-      ajax.send();
-      ajax.onreadystatechange = function() {
-        if(ajax.readyState === 4 && ajax.status === 200) {
-          let result = JSON.parse(ajax.response);
-          if(result.errcode === "OK") {
-            //跳转至登录页
-            console.log("跳转至登录页")
-          }else{
-            Toast.fail(`退出失败`, 2);
-          }
-        }
-      }
-    }
-  }
-];
-
 const SelfCenter = ({main,dispatch}) => {
+
+  //TODO 卡片点击
+  const itemClick = (e) => {
+    dispatch({type: 'detail/getArticle',payload: e})
+  }
+
+  //TODO 右下角喜欢点击
+  const itemLikeClick = (e) => {
+    dispatch({
+      type:'main/likeClick',
+      payload: e,
+    })
+  }
+
   const Items = main.reply ?
     main.reply.map(item => {
       return <BriefComment {...item}/>
     })
     : '';
+
+  const MyBubble = main.myBubble ?
+    main.myBubble.map(item => {
+      return <BriefCard {...item} itemClick={itemClick} itemLikeClick={itemLikeClick}/>
+    })
+    : '';
+
+  const LikeBubble = main.likeBubble ?
+    main.likeBubble.map(item => {
+      return <BriefCard {...item} itemClick={itemClick}  itemLikeClick={itemLikeClick}/>
+    })
+    : '';
+
+  const delLogin = () => {
+    dispatch({
+      type: 'main/dellogin'
+    })
+  }
+
   return (
     <div className={styles.bg}>
       <div className={styles.jump}>
@@ -61,32 +67,42 @@ const SelfCenter = ({main,dispatch}) => {
       </div>
       <Tabs tabs={tabs}
             initialPage={0}
-            onChange={(tab, index) => { console.log('onChange', index, tab); }}
-            onTabClick={(tab, index) => { console.log('onTabClick', index, tab); }}
             className={styles.tab}
       >
         <div className={styles.sub} >
+          <WhiteSpace size='xl'/>
           {Items}
           <WhiteSpace size='xl'/>
-        </div>
-        <div className={styles.sub}>
-          Content of second tab
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
         </div>
         <div className={styles.sub}>
-          Content of third tab
+          <WhiteSpace size='xl'/>
+          {MyBubble}
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
+        </div>
+        <div className={styles.sub}>
+          <WhiteSpace size='xl'/>
+          {LikeBubble}
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
+          <WhiteSpace size='xl'/>
           <WhiteSpace size='xl'/>
         </div >
         <div className={styles.sub}>
           <WhiteSpace size='xl'/>
           <List>
-            <Item>设置评论昵称</Item>
+            <Item className={styles.subitem} extra='叶一'>设置评论昵称</Item>
             <WhiteSpace size='xl'/>
             <Item>修改密码</Item>
             <WhiteSpace size='xl'/>
             <Item>检查更新</Item>
             <WhiteSpace size='xl'/>
-            <Item>退出登录</Item>
+            <Item onClick={delLogin}>退出登录</Item>
           </List>
           <WhiteSpace size='xl'/>
         </div >

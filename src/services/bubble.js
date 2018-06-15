@@ -100,3 +100,17 @@ export function sendBubble(payload) {
     url: '/api/bubble/sendMyBubble'
   })
 }
+
+export function getMyBubble() {
+  return fetch({
+    method: 'get',
+    url: '/api/bubble/getMyBubble'
+  })
+}
+
+export function getLikeBubble() {
+  return fetch({
+    method: 'get',
+    url: '/api/bubble/getLikeBubble'
+  })
+}

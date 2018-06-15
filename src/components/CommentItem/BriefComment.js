@@ -10,7 +10,7 @@ import styles from './CommentItem.css';
 import {connect} from 'dva'
 
 const BriefComment = (props) => {
-  const {createtime,gender,content,rcontent,topic,dispatch} = props;
+  const {createtime,gender,content,rcontent,topic,dispatch,type,likenum,replynum,} = props;
 
   const onItemClick = () => {
     console.log(props)
@@ -42,15 +42,27 @@ const BriefComment = (props) => {
 
   return(
     <div className={styles.swrapper} onClick={onItemClick}>
-      <div className={styles.title}>
-        <img className={styles.img} src={gender===1?require('../../assets/comment.png'):require('../../assets/comment-w.png')} alt=""/>
-        有人在 {topic}之海 回复了你
-      </div>
+      {
+        type === 'reply' ?
+
+          <div className={styles.stitle}>
+            <img className={styles.img} src={gender===0?require('../../assets/comment.png'):require('../../assets/comment-w.png')} alt=""/>
+            {calculate(createtime)}有人在 {topic}之海 回复了你
+          </div>
+         :
+          <div className={styles.stitle}>
+            <img className={styles.img} src={gender===0?require('../../assets/liked-l.png'):require('../../assets/like-l.png')} alt=""/>
+            {calculate(createtime)}有人喜欢了你
+          </div>
+      }
       <div className={styles.middle}>
-        <span className={styles.rcontent}>'{content}'</span>
         <span className={styles.scontent}>{rcontent}</span>
+        <div className={styles.outer}>
+          <div className={styles.bubble}>{topic}</div>
+          <span className={styles.rcontent}>{content}</span>
+          <p className={styles.footer}>{likenum === 0 ? '' : `${likenum} 喜欢`} {replynum === 0 ? '' :( likenum === 0 ? `${replynum} 回复` : `· ${replynum} 回复`)}</p>
+        </div>
       </div>
-      <div className={styles.time}>{calculate(createtime)}</div>
     </div>
   )
 }

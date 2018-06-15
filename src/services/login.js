@@ -21,3 +21,10 @@ export function isLogin() {
     url: '/api/login/isLogin'
   })
 }
+
+export function delLogin() {
+  return fetch({
+    method: 'get',
+    url: '/api/login/delLogin'
+  })
+}

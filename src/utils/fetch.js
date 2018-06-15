@@ -28,7 +28,6 @@ service.interceptors.request.use(
   },
   error => {
     // 错误处理代码
-
     return Promise.reject(error)
   }
 )

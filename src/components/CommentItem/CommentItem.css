@@ -7,6 +7,11 @@
   font-size: 1.6rem;
   font-weight: bold;
 }
+.stitle {
+  color: white;
+  font-size: 1.6rem;
+  font-weight: bold;
+}
 .content {
   font-size: 1.6rem;
   margin-left: 2.6rem;
@@ -29,14 +34,46 @@
   font-size: 1.6rem;
   margin-left: 2.6rem;
   display: block;
+  color: #fff;
 }
 .rcontent {
   display: block;
   padding: .5rem;
   margin-left: 2.7rem;
-  font-size: 1.4rem;
-  color: #c4c4c4;
+  font-size: 1.6rem;
+  color: #fff;
+  overflow: hidden;/*溢出隐藏*/
+  text-overflow: ellipsis;/*文本溢出省略号*/
+  white-space: nowrap;/*不换行*/
 }
 .middle {
   padding-top: 1rem;
+}
+.outer {
+  /*background-color: transparent;*/
+  background-image: url("../../assets/bg.png");
+  background-size: 100% 100%;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 1rem 0 1rem 0;
+}
+.outer:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.bubble {
+  padding: 2rem 0 0 1.5rem;
+  background-image: url("../../assets/bubble.png");
+  background-size: 100% 100%;
+  width: 6rem;
+  height: 6rem;
+  float: left;
+  margin-right: 2rem;
+  font-size: 1.5rem;
+  color: white;
+}
+.footer {
+  color: white;
+  margin-left: 8.5rem;
 }

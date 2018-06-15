@@ -6,9 +6,9 @@
  * Desc :
  */
 import {routerRedux} from 'dva/router'
-import {getBubbles,changeLike,getTopic,isNoRead,resetNoRead,getNoRead,getUserInfo,sendBubble} from "../services/bubble";
+import {getBubbles,changeLike,getTopic,isNoRead,resetNoRead,getNoRead,getUserInfo,sendBubble,getLikeBubble,getMyBubble} from "../services/bubble";
 import delay from "../utils/delay";
-import {login,isLogin} from "../services/login";
+import {login,isLogin ,delLogin} from "../services/login";
 import { Toast } from 'antd-mobile';
 
 export default {
@@ -17,6 +17,8 @@ export default {
     theme: [
       { id: 1, name: '此刻'},
     ],
+    likeBubble: [],
+    myBubble: [],
     bubble: [],
     tid: 1,
     userdata: {},
@@ -30,6 +32,8 @@ export default {
         if (pathname === '/main') {
           dispatch({type: 'querytopic'})
           dispatch({type: 'isNoRead'})
+          dispatch({type: 'getMyBubble'})
+          dispatch({type: 'getLikeBubble'})
         } else if (pathname === '/theme'){
           dispatch({type: 'query'})
         } else if(pathname === '/random') {
@@ -39,6 +43,36 @@ export default {
     }
   },
   effects: {
+    *dellogin({payload},{call,put,select}) {
+      const {data} = yield call(delLogin)
+      Toast.success('已退出~',1.1)
+      yield call(delay,1100)
+      yield put(routerRedux.push('./main'))
+    },
+    *getMyBubble({payload},{call,put,select}) {
+      // 存储用户发布的bubble
+      const my = yield call(getMyBubble);
+      let myarray = Object.values(my.data.data)
+      const myBubble = myarray.slice(0,myarray.length-1)
+      yield put({
+        type: 'save',
+        payload: {
+          myBubble: myBubble,
+        }
+      });
+    },
+    *getLikeBubble({payload},{call,put,select}) {
+      // 存储用户喜欢的bubble
+      const like = yield call(getLikeBubble);
+      let array = Object.values(like.data.data)
+      const likeBubble = array.slice(0,array.length-1)
+      yield put({
+        type: 'save',
+        payload: {
+          likeBubble: likeBubble,
+        }
+      });
+    },
     *getUserInfo({payload},{call,put,select}){
       const {data} = yield call(getUserInfo)
       yield put({
@@ -84,6 +118,7 @@ export default {
         yield call(delay,1000)
         yield put(routerRedux.push('./login'))
       }  else {
+        // 判断是否有未读
         const {data} = yield call(resetNoRead);
         if(data.data !== 0) {
           yield put({
@@ -94,6 +129,8 @@ export default {
             }
           });
         }
+
+        // 存储未读消息
         const res = yield call(getNoRead)
         yield put({
           type: 'save',
@@ -118,6 +155,7 @@ export default {
     },
     *login({payload},{call,put}) {
       payload.username = payload.username.replace(/\s/g,"")
+      // payload.username ?  payload.username.replace(/\s/g,"") : '';
       const {data} = yield call(login,payload);
       if (data.errcode === 'OK') {
         Toast.success('登陆成功',1.5)

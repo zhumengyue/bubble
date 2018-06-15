@@ -23,3 +23,6 @@
   justifyContent: center;
   overflow: auto;
 }
+.subitem {
+  color: white;
+}

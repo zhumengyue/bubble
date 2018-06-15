@@ -2,12 +2,16 @@
   height: 100%;
 }
 .content {
-  font-size: 2.1rem;
+  font-size: 2rem;
+  line-height: 3rem;
   background-color: #fff;
   margin: 5.8rem 1.5rem 2rem 1.5rem;
   color: rgb(31,93,158);
   min-height: 100%;
   height: auto;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  border-radius: 3rem;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -37,7 +41,7 @@
   background-color: rgb(244,248,251);
 }
 .btn {
-  font-size: 2rem;
+  font-size: 1.5rem;
   width: 50%;
   float: left;
   height: 5.8rem;

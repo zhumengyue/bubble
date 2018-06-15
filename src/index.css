@@ -34,6 +34,11 @@ html, body {
 :global(.am-tabs-default-bar) {
   background-color: transparent !important;
 }
+:global(.am-tabs-default-bar-tab) {
+  font-weight: bold !important;
+  font-size: 1.7rem !important;
+  color: rgb(134, 201, 232) !important;
+}
 :global(.am-tabs-default-bar-tab-active) {
   color: white !important;
 }
@@ -54,4 +59,10 @@ html, body {
 }
 :global(.am-list-line::after) {
   background-color: transparent !important;
+}
+:global(.am-list-content) {
+  color: white !important;
+}
+:global(.am-list-extra) {
+  color: #fff !important;
 }
